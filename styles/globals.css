@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+table {
+    @apply w-2/3 text-left border border-separate rounded border-slate-200 gap-2;
+}
+
+th {
+    @apply h-6 px-3 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-gray;
+}
+
+td {
+    @apply h-6 px-3 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500;
+}
