@@ -1,4 +1,7 @@
+
 import { Sidebar } from "@/components/Sidebar";
+import { API_SERVICES, fetcher } from "@/services";
+import useSWR from "swr";
 
 interface MaterialesProps {
   identificador: string;
@@ -8,20 +11,10 @@ interface MaterialesProps {
   creado: string;
 }
 
-const Materiales = ({
-  identificador,
-  fecha,
-  nombre,
-  saldo,
-  creado,
-}: MaterialesProps) => {
-  ({
-    identificador: "",
-    fecha: "",
-    nombre: "",
-    saldo: "",
-    creado: "",
-  });
+const Materiales = () => {
+  const {data, isLoading, error } = useSWR(API_SERVICES.material, fetcher);
+
+  console.log (data, isLoading, error);
 
   return (
     <div className="flex h-screen">
@@ -57,13 +50,18 @@ const Materiales = ({
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>112313</td>
-                <td>12/10</td>
-                <td>Sandra</td>
-                <td>6</td>
-                <td>Andres</td>
+              {data?.materiales.map((material) => {
+                return (
+                  <tr key={material.id}>
+                    <td>{material.id}</td>
+                    <td>{material.fechaCreacion.toString()}</td>
+                    <td>{material.nombre}</td>
+                    <td>{material.saldo}</td>
+                    <td>{material.creadoPor}</td>
               </tr>
+                );
+              })}
+              
             </tbody>
           </table>
         </div>
