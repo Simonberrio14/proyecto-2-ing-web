@@ -1,8 +1,10 @@
 const API_URL = 'http://demo9184597.mockable.io';
+const API_URL2 = 'http://demo7078211.mockable.io/';
 
 const API_SERVICES = {
   users: `${API_URL}/users`,
   roles:`${API_URL}/roles`,
+  material:`${API_URL2}`,
 };
 
 const fetcher = (url:string) => fetch(url).then((res) => res.json()); 
