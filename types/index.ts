@@ -9,6 +9,7 @@ export interface User{
 
 export interface UserQuery{
     users: User[];
+    materiales : Material[];
 }
 
 export interface Role {
@@ -21,3 +22,11 @@ export interface Role {
 export interface RolesQuery {
     roles: Role[];
 }
+
+export interface Material{
+    id: string;
+    fechaCreacion: string;
+    nombre: string;
+    saldo: string;
+    creadoPor: string;
+ }
