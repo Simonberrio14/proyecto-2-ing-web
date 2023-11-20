@@ -10,6 +10,7 @@ export interface User{
 export interface UserQuery{
     users: User[];
     materiales : Material[];
+    inventarios : Inventario[];
 }
 
 export interface Role {
@@ -29,4 +30,12 @@ export interface Material{
     nombre: string;
     saldo: string;
     creadoPor: string;
+ }
+
+ export interface Inventario{
+    id: string;
+    fecha: string;
+    entrada: string;
+    salida: string;
+    responsable: string;
  }
