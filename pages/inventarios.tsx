@@ -2,24 +2,25 @@
 import { Sidebar } from "@/components/Sidebar";
 import { API_SERVICES, fetcher } from "@/services";
 import useSWR from "swr";
-import { NuevoMaterial } from "@/components/materiales/NuevoMaterial";
+import { NuevoMovimiento } from "@/components/inventarios/NuevoMovimiento";
+import { MaterialFilters } from "@/components/inventarios/MaterialFilters";
 import { UserQuery } from "@/types";
 import { useGetRoles } from "@/hooks/useGetRoles";
 import { useState } from "react";
 
-interface MaterialesProps {
+interface InventariosProps {
   identificador: string;
   fecha: string;
-  nombre: string;
-  saldo: string;
-  creado: string;
+  entrada: string;
+  salida: string;
+  responsable: string;
 }
 
-const Materiales = () => {
-  const [openNuevoMaterial, setOpenNuevoMaterial] = useState(false);
+const Inventarios = () => {
+  const [openNuevoMovimiento, setOpenNuevoMovimiento] = useState(false);
   const { roles } = useGetRoles();
   const { data, isLoading, error } = useSWR<UserQuery>(
-    API_SERVICES.material,
+    API_SERVICES.inventario,
     fetcher
   );
 
@@ -34,18 +35,20 @@ const Materiales = () => {
       <div className="w-[100%]">
         <div className="flex items-center justify-center bg-white p-10">
           <h1 className="text-black text-center text-4xl">
-            Gestión de Materiales
+            Gestión de Inventarios
           </h1>
         </div>
         <div className="flex justify-between px-20">
-          <span></span>
+          <span>
+            <MaterialFilters />
+          </span>
           <span>
               <button
                 className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
                 type="button"
-                onClick={() => setOpenNuevoMaterial(true)}
+                onClick={() => setOpenNuevoMovimiento(true)}
               >
-                Agregar material
+                Agregar Movimiento
               </button>
           </span>
         </div>
@@ -54,21 +57,21 @@ const Materiales = () => {
             <thead>
               <tr>
                 <th>Identificador</th>
-                <th>Fecha de creación</th>
-                <th>Nombre</th>
-                <th>Saldo</th>
-                <th>Creado por</th>
+                <th>Fecha</th>
+                <th>Entrada</th>
+                <th>Salida</th>
+                <th>Responsable</th>
               </tr>
             </thead>
             <tbody>
-              {data?.materiales.map((material) => {
+              {data?.inventarios.map((inventario) => {
                 return (
-                  <tr key={material.id}>
-                    <td>{material.id}</td>
-                    <td>{material.fechaCreacion.toString()}</td>
-                    <td>{material.nombre}</td>
-                    <td>{material.saldo}</td>
-                    <td>{material.creadoPor}</td>
+                  <tr key={inventario.id}>
+                    <td>{inventario.id}</td>
+                    <td>{inventario.fecha.toString()}</td>
+                    <td>{inventario.entrada}</td>
+                    <td>{inventario.salida}</td>
+                    <td>{inventario.responsable}</td>
               </tr>
                 );
               })}
@@ -77,9 +80,9 @@ const Materiales = () => {
           </table>
         </div>
       </div>
-      <NuevoMaterial open={openNuevoMaterial} setOpen={setOpenNuevoMaterial} />
+      <NuevoMovimiento open={openNuevoMovimiento} setOpen={setOpenNuevoMovimiento} />
     </div>
   );
 };
 
-export default Materiales;
+export default Inventarios;
