@@ -1,19 +1,26 @@
-import { Role, PrismaClient} from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient, Role } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next"
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
-interface Response {
-    roles?: Role[];
-    message?: string;
+interface ResponseData {
+  roles?: Role[];
+  message?: String;
 }
 
-const handler = async (req: NextApiRequest, res:NextApiResponse<Response>)=> {
-    if(req.method === 'GET'){
-        const roles = await prisma.role.findMany();
-        return res.status(200).json({roles});
-    }
-    return res.status(405).json({message: 'Method not allowed'});
-};
+const rolesApi = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
 
-export default handler;
+  try {
+
+    if (req.method === 'GET') {
+      const roles = await prisma.role.findMany();
+      return res.status(200).json({ roles });
+    }
+
+    return res.status(405).json({ message: 'Method not allowed' });
+  } catch {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+export default rolesApi
