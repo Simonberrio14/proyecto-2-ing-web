@@ -21,12 +21,14 @@ const usersApi = async (req: NextApiRequest, res: NextApiResponse<ResponseData>)
 
     if (req.method === 'POST') {
       const { email, name, roleId } = req.body;
+      const emailVerified = new Date().toISOString();
 
       const newUser = await prisma.user.create({
         data: {
           name,
           email,
-          roleId
+          roleId,
+          emailVerified,
         }
       });
 

@@ -46,7 +46,7 @@ const UsersPage = () => {
             <thead>
               <tr>
                 <th>Identificador</th>
-                {/* <th>Fecha de creación</th> */}
+                <th>Fecha de creación</th>
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Acciones</th>
@@ -56,17 +56,12 @@ const UsersPage = () => {
               {data?.users?.map((user) => {
                 return (
                   <tr key={user.id}>
-                    {/* <td>
-                    <Image
-                      className="rouded-full"
-                      src={user.image}
-                      height={30}
-                      width={30}
-                      alt="user"
-                    />
-                  </td> */}
                     <td>{user.id}</td>
-                    {/* <td>{user?.emailVerified?.getDate()}</td> */}
+                    <td>
+                      {user?.emailVerified
+                        ? new Date(user.emailVerified).toLocaleDateString()
+                        : "-"}
+                    </td>
                     <td>{user.email}</td>
                     <td>
                       {roles?.find((r) => r.id === user.roleId)?.name ?? ""}

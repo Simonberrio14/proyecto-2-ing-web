@@ -34,7 +34,11 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
       await axios.request({
         method: "PUT",
         url: `${API_SERVICES.users}/${user?.id ?? ""}`,
-        data: { email: formData.email, roleId: formData.roleId },
+        data: {
+          email: formData.email,
+          roleId: formData.roleId,
+          emailVerified: new Date().toISOString(),
+        },
       });
 
       // actualización de la tabla de usuarios
