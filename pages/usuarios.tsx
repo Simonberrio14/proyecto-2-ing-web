@@ -31,7 +31,9 @@ const UsersPage = () => {
           <div className="flex items-center py-10">
             <h1>Gestión de usuarios</h1>
             <Tooltip title="Crear nuevo usuario">
-              <button type="button" onClick={() => setOpenNewUserDialog(true)}
+              <button
+                type="button"
+                onClick={() => setOpenNewUserDialog(true)}
                 className="flex text-2xl mt-2 px-4 text-indigo-700 hover:scale-110"
               >
                 <AiOutlinePlusCircle />
@@ -45,14 +47,13 @@ const UsersPage = () => {
               <tr>
                 <th>Identificador</th>
                 {/* <th>Fecha de creación</th> */}
-                <th>Nombre</th>
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {data?.users.map((user) => {
+              {data?.users?.map((user) => {
                 return (
                   <tr key={user.id}>
                     {/* <td>
@@ -65,13 +66,11 @@ const UsersPage = () => {
                     />
                   </td> */}
                     <td>{user.id}</td>
-                    {/* <td>{user.createAt.toString()}</td> */}
-                    <td>{user.name}</td>
+                    {/* <td>{user?.emailVerified?.getDate()}</td> */}
                     <td>{user.email}</td>
-                    <td>{user.roleId}</td>
-                    {/* <td>
-                    {roles?.find((r) => r.id === user.roleId)?.name ?? ""}
-                  </td> */}
+                    <td>
+                      {roles?.find((r) => r.id === user.roleId)?.name ?? ""}
+                    </td>
                     <td>
                       <UsersTableActions user={user} />
                     </td>

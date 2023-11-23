@@ -32,36 +32,6 @@ const usersApi = async (req: NextApiRequest, res: NextApiResponse<ResponseData>)
 
       return res.status(201).json({ newUser });
     }
-
-    if (req.method === 'PUT') {
-      const userId = req.query.id as string;
-
-      const updateUser = await prisma.user.update({
-        where: {
-          id: userId,
-        },
-        data: {
-          name: req.body.name,
-          roleId: req.body.roleId,
-        }
-      });
-
-      return res.status(200).json({ user: updateUser });
-    }
-
-    if (req.method === 'DELETE') {
-      console.log("req", req)
-      const userId = req.query.id as string;
-
-      const deleteUser = await prisma.user.delete({
-        where: {
-          id: userId,
-        }
-      });
-
-      return res.status(200).json({ user: deleteUser });
-    }
-
     return res.status(405).json({ message: 'Method not allowed' });
   } catch {
     return res.status(500).json({ message: 'Internal server error' });

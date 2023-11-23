@@ -33,19 +33,10 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
       //request para actualizar el usuario
       await axios.request({
         method: "PUT",
-        url: `${API_SERVICES.users}`,
-        data: { data: formData.name, column: "name" },
+        url: `${API_SERVICES.users}/${user?.id ?? ""}`,
+        data: { email: formData.email, roleId: formData.roleId },
       });
-      await axios.request({
-        method: "PUT",
-        url: `${API_SERVICES.users}`,
-        data: { data: formData.email, column: "email" },
-      });
-      await axios.request({
-        method: "PUT",
-        url: `${API_SERVICES.users}`,
-        data: { data: formData.roleId, column: "roleId" },
-      });
+
       // actualización de la tabla de usuarios
       await mutate(API_SERVICES.users);
       toast.success("Usuario actualizado correctamente");
@@ -60,24 +51,10 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
   return (
     <Dialog
       title={`Update user ${user.name}`}
-      open={open} onClose={() => setOpen(false)}
+      open={open}
+      onClose={() => setOpen(false)}
     >
       <form className="flex flex-col gap-5" onSubmit={submitForm}>
-        <label htmlFor="user-name">
-          <span>Nombre</span>
-          <input
-            value={formData.name}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                name: e.target.value,
-              })
-            }
-            type="text"
-            required
-            name="user-name"
-          />
-        </label>
         <label htmlFor="email">
           <span>Email</span>
           <input
@@ -85,7 +62,7 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
             onChange={(e) =>
               setFormData({
                 ...formData,
-                name: e.target.value,
+                email: e.target.value,
               })
             }
             type="text"

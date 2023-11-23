@@ -2,15 +2,15 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  createAt: Date;
+  // emailVerified: Date;
   image: string;
   roleId: string;
 }
 
 export interface UserQuery {
   users: User[];
-  materiales: Material[];
-  inventarios: Inventario[];
+  // materiales: Material[];
+  // inventarios: Inventario[];
 }
 
 export interface Role {
