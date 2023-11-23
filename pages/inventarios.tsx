@@ -1,4 +1,3 @@
-
 import { Sidebar } from "@/components/Sidebar";
 import { API_SERVICES, fetcher } from "@/services";
 import useSWR from "swr";
@@ -43,13 +42,13 @@ const Inventarios = () => {
             <MaterialFilters />
           </span>
           <span>
-              <button
-                className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
-                type="button"
-                onClick={() => setOpenNuevoMovimiento(true)}
-              >
-                Agregar Movimiento
-              </button>
+            <button
+              className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
+              type="button"
+              onClick={() => setOpenNuevoMovimiento(true)}
+            >
+              Agregar Movimiento
+            </button>
           </span>
         </div>
         <div className="flex flex-col items-center justify-center mt-10 gap-3">
@@ -72,15 +71,17 @@ const Inventarios = () => {
                     <td>{inventario.entrada}</td>
                     <td>{inventario.salida}</td>
                     <td>{inventario.responsable}</td>
-              </tr>
+                  </tr>
                 );
               })}
-              
             </tbody>
           </table>
         </div>
       </div>
-      <NuevoMovimiento open={openNuevoMovimiento} setOpen={setOpenNuevoMovimiento} />
+      <NuevoMovimiento
+        open={openNuevoMovimiento}
+        setOpen={setOpenNuevoMovimiento}
+      />
     </div>
   );
 };

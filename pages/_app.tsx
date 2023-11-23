@@ -3,13 +3,16 @@ import type { AppProps } from "next/app";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Layout } from "@/layouts";
+import { SessionProvider } from "next-auth/react";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-      <ToastContainer />
-    </Layout>
+    <SessionProvider session={session}>
+      <Layout>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </Layout>
+    </SessionProvider>
   );
 };
 

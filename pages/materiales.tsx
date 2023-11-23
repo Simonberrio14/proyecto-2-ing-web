@@ -1,4 +1,3 @@
-
 import { Sidebar } from "@/components/Sidebar";
 import { API_SERVICES, fetcher } from "@/services";
 import useSWR from "swr";
@@ -40,13 +39,13 @@ const Materiales = () => {
         <div className="flex justify-between px-20">
           <span></span>
           <span>
-              <button
-                className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
-                type="button"
-                onClick={() => setOpenNuevoMaterial(true)}
-              >
-                Agregar material
-              </button>
+            <button
+              className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
+              type="button"
+              onClick={() => setOpenNuevoMaterial(true)}
+            >
+              Agregar material
+            </button>
           </span>
         </div>
         <div className="flex flex-col items-center justify-center mt-10 gap-3">
@@ -69,10 +68,9 @@ const Materiales = () => {
                     <td>{material.nombre}</td>
                     <td>{material.saldo}</td>
                     <td>{material.creadoPor}</td>
-              </tr>
+                  </tr>
                 );
               })}
-              
             </tbody>
           </table>
         </div>
