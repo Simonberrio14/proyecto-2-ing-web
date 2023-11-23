@@ -9,8 +9,8 @@ export interface User {
 
 export interface UserQuery {
   users: User[];
-  // materiales: Material[];
-  // inventarios: Inventario[];
+  materiales: Material[];
+  inventarios: Inventario[];
 }
 
 export interface Role {
