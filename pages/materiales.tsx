@@ -5,6 +5,7 @@ import { NuevoMaterial } from "@/components/materiales/NuevoMaterial";
 import { UserQuery } from "@/types";
 import { useGetRoles } from "@/hooks/useGetRoles";
 import { useState } from "react";
+import { PrivateRoute } from "@/components/usuarios/PrivateRoute";
 
 interface MaterialesProps {
   identificador: string;
@@ -26,57 +27,62 @@ const Materiales = () => {
   if (error) return <div>Ha ocurrido un error</div>;
 
   return (
-    <div className="flex h-screen">
-      <div>
-        <Sidebar />
+    <PrivateRoute>
+      <div className="flex h-screen">
+        <div>
+          <Sidebar />
+        </div>
+        <div className="w-[100%]">
+          <div className="flex items-center justify-center bg-white p-10">
+            <h1 className="text-black text-center text-4xl">
+              Gestión de Materiales
+            </h1>
+          </div>
+          <div className="flex justify-between px-20">
+            <span></span>
+            <span>
+              <button
+                className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
+                type="button"
+                onClick={() => setOpenNuevoMaterial(true)}
+              >
+                Agregar material
+              </button>
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center mt-10 gap-3">
+            <table cellSpacing="0" className="materialesTable">
+              <thead>
+                <tr>
+                  <th>Identificador</th>
+                  <th>Fecha de creación</th>
+                  <th>Nombre</th>
+                  <th>Saldo</th>
+                  <th>Creado por</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.materiales.map((material) => {
+                  return (
+                    <tr key={material.id}>
+                      <td>{material.id}</td>
+                      <td>{material.fechaCreacion.toString()}</td>
+                      <td>{material.nombre}</td>
+                      <td>{material.saldo}</td>
+                      <td>{material.creadoPor}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <NuevoMaterial
+          open={openNuevoMaterial}
+          setOpen={setOpenNuevoMaterial}
+        />
       </div>
-      <div className="w-[100%]">
-        <div className="flex items-center justify-center bg-white p-10">
-          <h1 className="text-black text-center text-4xl">
-            Gestión de Materiales
-          </h1>
-        </div>
-        <div className="flex justify-between px-20">
-          <span></span>
-          <span>
-            <button
-              className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
-              type="button"
-              onClick={() => setOpenNuevoMaterial(true)}
-            >
-              Agregar material
-            </button>
-          </span>
-        </div>
-        <div className="flex flex-col items-center justify-center mt-10 gap-3">
-          <table cellSpacing="0" className="materialesTable">
-            <thead>
-              <tr>
-                <th>Identificador</th>
-                <th>Fecha de creación</th>
-                <th>Nombre</th>
-                <th>Saldo</th>
-                <th>Creado por</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.materiales.map((material) => {
-                return (
-                  <tr key={material.id}>
-                    <td>{material.id}</td>
-                    <td>{material.fechaCreacion.toString()}</td>
-                    <td>{material.nombre}</td>
-                    <td>{material.saldo}</td>
-                    <td>{material.creadoPor}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <NuevoMaterial open={openNuevoMaterial} setOpen={setOpenNuevoMaterial} />
-    </div>
+    </PrivateRoute>
   );
 };
 
