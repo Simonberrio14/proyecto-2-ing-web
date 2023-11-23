@@ -6,7 +6,7 @@ const API_URL3 = 'http://demo0527245.mockable.io/';
 const API_SERVICES = {
   users: `${API_URL}/users`,
   roles: `${API_URL}/roles`,
-  material: `${API_URL2}`,
+  material: `${API_URL}/materiales`,
 };
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());

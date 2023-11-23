@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const prisma = new PrismaClient()
 
 type ResponseData = {
-  materials?: Material[];
+  materiales?: Material[];
   material?: Material;
   newMaterial?: Material;
   message?: String;
@@ -15,11 +15,12 @@ const materialsApi = async (req: NextApiRequest, res: NextApiResponse<ResponseDa
   try {
 
     if (req.method === 'GET') {
-      const materials = await prisma.material.findMany();
-      return res.status(200).json({ materials });
+      const materiales = await prisma.material.findMany();
+      return res.status(200).json({ materiales });
     }
 
     if (req.method === 'POST') {
+      console.log(req);
       const { name, quantity, userId } = req.body;
 
       const newMaterial = await prisma.material.create({
