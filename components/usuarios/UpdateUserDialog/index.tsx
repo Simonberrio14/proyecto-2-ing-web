@@ -22,6 +22,7 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
   const { roles } = useGetRoles();
   const [formData, setFormData] = useState({
     name: user.name,
+    email: user.email,
     roleId: user.roleId,
   });
 
@@ -32,12 +33,17 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
       //request para actualizar el usuario
       await axios.request({
         method: "PUT",
-        url: `${API_SERVICES.users}/${user?.id ?? ""}`,
+        url: `${API_SERVICES.users}`,
         data: { data: formData.name, column: "name" },
       });
       await axios.request({
         method: "PUT",
-        url: `${API_SERVICES.users}/${user?.id ?? ""}`,
+        url: `${API_SERVICES.users}`,
+        data: { data: formData.email, column: "email" },
+      });
+      await axios.request({
+        method: "PUT",
+        url: `${API_SERVICES.users}`,
         data: { data: formData.roleId, column: "roleId" },
       });
       // actualización de la tabla de usuarios
@@ -54,8 +60,7 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
   return (
     <Dialog
       title={`Update user ${user.name}`}
-      open={open}
-      onClose={() => setOpen(false)}
+      open={open} onClose={() => setOpen(false)}
     >
       <form className="flex flex-col gap-5" onSubmit={submitForm}>
         <label htmlFor="user-name">
@@ -71,6 +76,21 @@ const UpdateUserDialog = ({ open, setOpen, user }: UpdateUserDialogProps) => {
             type="text"
             required
             name="user-name"
+          />
+        </label>
+        <label htmlFor="email">
+          <span>Email</span>
+          <input
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                name: e.target.value,
+              })
+            }
+            type="text"
+            required
+            name="email"
           />
         </label>
         <label>

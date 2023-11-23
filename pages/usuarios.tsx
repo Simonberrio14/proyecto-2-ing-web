@@ -31,9 +31,7 @@ const UsersPage = () => {
           <div className="flex items-center py-10">
             <h1>Gestión de usuarios</h1>
             <Tooltip title="Crear nuevo usuario">
-              <button
-                type="button"
-                onClick={() => setOpenNewUserDialog(true)}
+              <button type="button" onClick={() => setOpenNewUserDialog(true)}
                 className="flex text-2xl mt-2 px-4 text-indigo-700 hover:scale-110"
               >
                 <AiOutlinePlusCircle />
@@ -46,7 +44,8 @@ const UsersPage = () => {
             <thead>
               <tr>
                 <th>Identificador</th>
-                <th>Fecha de creación</th>
+                {/* <th>Fecha de creación</th> */}
+                <th>Nombre</th>
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Acciones</th>
@@ -66,7 +65,8 @@ const UsersPage = () => {
                     />
                   </td> */}
                     <td>{user.id}</td>
-                    <td>{user.createAt.toString()}</td>
+                    {/* <td>{user.createAt.toString()}</td> */}
+                    <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{user.roleId}</td>
                     {/* <td>

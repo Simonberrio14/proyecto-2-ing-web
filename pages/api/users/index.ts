@@ -50,6 +50,7 @@ const usersApi = async (req: NextApiRequest, res: NextApiResponse<ResponseData>)
     }
 
     if (req.method === 'DELETE') {
+      console.log("req", req)
       const userId = req.query.id as string;
 
       const deleteUser = await prisma.user.delete({
