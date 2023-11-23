@@ -2,7 +2,6 @@ import { Dialog } from "@/components/ui/Dialog";
 import { Dispatch, SetStateAction, useState } from "react";
 import axios from "axios";
 import { API_SERVICES } from "@/services";
-import { Toast } from "ngx-toastr";
 import { toast } from "react-toastify";
 import { mutate } from "swr";
 import { User } from "@/types";
@@ -19,17 +18,17 @@ const DeleteUserDialog = ({ open, setOpen, user }: DeleteUserDialogProps) => {
   const [loading, setLoading] = useState(false);
   const deleteUser = async () => {
     setLoading(true);
-    // try{
-    //   await axios.request({
-    //     method: 'DELETE',
-    //     url: `${API_SERVICES.users}/${user.id}`,
-    //   });
-    //toast.success("usuario eliminado correctamente");
-    //await mutate(API_SERVICES.users);
-    // }catch (error){
-    //   console.log(error);
-    //toast.error("error eliminando el usuario");
-    // }
+    try{
+      await axios.request({
+        method: 'DELETE',
+        url: `${API_SERVICES.users}/${user.id}`,
+      });
+    toast.success("usuario eliminado correctamente");
+    await mutate(API_SERVICES.users);
+    }catch (error){
+      console.log(error);
+    toast.error("error eliminando el usuario");
+    }
 
     setLoading(false);
     setOpen(false);
