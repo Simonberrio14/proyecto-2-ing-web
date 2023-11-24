@@ -1,6 +1,3 @@
-import { API_SERVICES, fetcher } from "@/services";
-import useSWR from "swr";
-import Image from "next/image";
 import { UsersTableActions } from "@/components/usuarios/UsersTableActions";
 import { UserQuery } from "@/types";
 import { useGetRoles } from "@/hooks/useGetRoles";
@@ -11,6 +8,7 @@ import { useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { PrivateRoute } from "@/components/usuarios/PrivateRoute";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { useGetUsers } from "@/hooks/useGetUsers";
 
 const UsersPageWrapper = () => {
   return (
@@ -23,10 +21,7 @@ const UsersPageWrapper = () => {
 const UsersPage = () => {
   const [openNewUserDialog, setOpenNewUserDialog] = useState(false);
   const { roles } = useGetRoles();
-  const { data, isLoading, error } = useSWR<UserQuery>(
-    API_SERVICES.users,
-    fetcher
-  );
+  const { users, isLoading, error } = useGetUsers();
 
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Ha ocurrido un error</div>;
@@ -63,7 +58,7 @@ const UsersPage = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.users?.map((user) => {
+              {users?.map((user) => {
                 return (
                   <tr key={user.id}>
                     <td>{user.id}</td>
