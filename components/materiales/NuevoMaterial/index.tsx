@@ -73,21 +73,6 @@ import {
               onChange={(e) => setFormData({ ...formData, id: e.target.value })}
             />
           </label>
-          <label htmlFor="fechaCreacion">
-            <span>
-              Fecha <RequiredMark />
-            </span>
-            <input
-              name="fechaCreacion"
-              type="text"
-              placeholder="Fecha de creación"
-              required
-              value={formData.fechaCreacion}
-              onChange={(e) =>
-                setFormData({ ...formData, fechaCreacion: e.target.value })
-              }
-            />
-          </label>
           <label htmlFor="nombre">
             <span>
               Nombre <RequiredMark />
@@ -117,23 +102,7 @@ import {
                 setFormData({ ...formData, saldo: e.target.value })
               }
             />
-          </label>
-          <label htmlFor="creadoPor">
-            <span>
-              Creado Por <RequiredMark />
-            </span>
-            <input
-              name="creadoPor"
-              type="text"
-              placeholder="Usuario actual"
-              required
-              value={formData.creadoPor}
-              onChange={(e) =>
-                setFormData({ ...formData, creadoPor: e.target.value })
-              }
-            />
-          </label>
-          
+          </label>        
           <div className='flex gap-3'>
             <PrimaryActionButton
               text='Agregar Material'
