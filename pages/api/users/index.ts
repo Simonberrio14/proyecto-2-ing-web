@@ -1,6 +1,9 @@
 import { prisma } from "@/services/prisma";
 import { User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import {getServerSession} from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { checkProtectedApi } from "@/utils/checkServerSession";
 
 
 
@@ -13,6 +16,9 @@ type ResponseData = {
 }
 
 const usersApi = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
+ await checkProtectedApi(req, res, 'ADMIN');
+  
+
   try {
 
     if (req.method === 'GET') {

@@ -1,4 +1,5 @@
 import { NavigationCard } from "./NavigationCard";
+import { PrivateComponent } from "./PrivateComponent";
 
 const Sidebar = () => {
   return (
@@ -15,9 +16,11 @@ const Sidebar = () => {
         </span>
       </div>
       <div className="bg-gray flex flex-col items-center debug w-full h-314 gap-1 pb-1 relative p-10 px-5">
+        <PrivateComponent roleName="ADMIN">
+          <NavigationCard title="Usuarios" href="/usuarios" />
+        </PrivateComponent>
         <NavigationCard title="Inventarios" href="/inventarios" />
         <NavigationCard title="Materiales" href="/materiales" />
-        <NavigationCard title="Usuarios" href="/usuarios" />
       </div>
     </aside>
   );
