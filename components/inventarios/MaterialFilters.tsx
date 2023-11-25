@@ -20,12 +20,6 @@ const MaterialFilters = () => {
           name="Matrial"
           //value={material.nombre}
           value="no"
-          onChange={(e) =>
-            setOpenMaterialFilters({
-              ...MaterialFilters,
-              material: parseInt(e.target.value),
-            })
-          }
         >
           <option disabled value="">
             Seleccione un material
