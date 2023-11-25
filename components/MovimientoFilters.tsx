@@ -21,7 +21,7 @@ return (
           onChange={(e) =>
             setMovimientoFilters({
               ...movimientoFilters,
-              tipo: parseInt(e.target.value),
+              tipo: parseInt(e.target.value).toString(),
             })
           }
         >
