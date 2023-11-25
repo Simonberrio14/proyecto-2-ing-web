@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/Sidebar";
 import { API_SERVICES, fetcher } from "@/services";
 import useSWR from "swr";
 import { NuevoMovimiento } from "@/components/inventarios/NuevoMovimiento";
