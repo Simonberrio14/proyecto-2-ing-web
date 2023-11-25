@@ -6,6 +6,9 @@ import { UserQuery } from "@/types";
 import { useGetRoles } from "@/hooks/useGetRoles";
 import { useState } from "react";
 import { PrivateRoute } from "@/components/usuarios/PrivateRoute";
+import { useSession } from "next-auth/react";
+import { iUserSessionData } from "@/layouts";
+import { PrivateComponent } from "@/components/PrivateComponent";
 
 interface MaterialesProps {
   identificador: string;
@@ -29,9 +32,7 @@ const Materiales = () => {
   return (
     <PrivateRoute>
       <div className="flex h-screen">
-        <div>
-          <Sidebar />
-        </div>
+        <div>{/* <Sidebar /> */}</div>
         <div className="w-[100%]">
           <div className="flex items-center justify-center bg-white p-10">
             <h1 className="text-black text-center text-4xl">
@@ -41,13 +42,15 @@ const Materiales = () => {
           <div className="flex justify-between px-20">
             <span></span>
             <span>
-              <button
-                className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
-                type="button"
-                onClick={() => setOpenNuevoMaterial(true)}
-              >
-                Agregar material
-              </button>
+              <PrivateComponent roleName="ADMIN">
+                <button
+                  className="mt-3 text-black text-sm  border border-gray-300 gap-2 px-4 py-2 font-semibold hover:scale-105 bg-white "
+                  type="button"
+                  onClick={() => setOpenNuevoMaterial(true)}
+                >
+                  Agregar material
+                </button>
+              </PrivateComponent>
             </span>
           </div>
           <div className="flex flex-col items-center justify-center mt-10 gap-3">
@@ -62,7 +65,7 @@ const Materiales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materiales.map((material) => {
+                {data?.materiales?.map((material) => {
                   return (
                     <tr key={material.id}>
                       <td>{material.id}</td>

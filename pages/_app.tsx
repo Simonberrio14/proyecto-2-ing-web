@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Layout } from "@/layouts";
 import { SessionProvider } from "next-auth/react";
+import { Sidebar } from "@/components/Sidebar";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (

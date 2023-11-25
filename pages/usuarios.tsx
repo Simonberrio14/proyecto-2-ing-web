@@ -23,14 +23,14 @@ const UsersPage = () => {
   const { roles } = useGetRoles();
   const { users, isLoading, error } = useGetUsers();
 
+  console.log("cualquier cosa", users);
+
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Ha ocurrido un error</div>;
 
   return (
     <div className="flex h-screen">
-      <div>
-        <Sidebar />
-      </div>
+      <div>{/* <Sidebar /> */}</div>
       <div className="flex flex-col items-center gap-5 p-10 w-[100%]">
         <section>
           <div className="flex items-center py-10">
@@ -65,8 +65,9 @@ const UsersPage = () => {
                     <td>
                       {user?.emailVerified
                         ? new Date(user.emailVerified).toLocaleDateString()
-                        : "-"}
+                        : new Date().toLocaleDateString()}
                     </td>
+
                     <td>{user.email}</td>
                     <td>
                       {roles?.find((r) => r.id === user.roleId)?.name ?? ""}

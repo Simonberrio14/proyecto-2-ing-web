@@ -30,9 +30,7 @@ const Inventarios = () => {
   return (
     <PrivateRoute>
       <div className="flex h-screen">
-        <div>
-          <Sidebar />
-        </div>
+        <div>{/* <Sidebar /> */}</div>
         <div className="w-[100%]">
           <div className="flex items-center justify-center bg-white p-10">
             <h1 className="text-black text-center text-4xl">
@@ -65,7 +63,7 @@ const Inventarios = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.inventarios.map((inventario) => {
+                {data?.inventarios?.map((inventario) => {
                   return (
                     <tr key={inventario.id}>
                       <td>{inventario.id}</td>

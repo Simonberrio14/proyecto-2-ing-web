@@ -20,14 +20,17 @@ const materialsApi = async (req: NextApiRequest, res: NextApiResponse<ResponseDa
     }
 
     if (req.method === 'POST') {
-      console.log(req);
-      const { name, quantity, userId } = req.body;
+      console.log(req.body);
+      // const {id, name, quantity, userId } = req.body;
 
+      let {nombre, saldo, creadoPor, fechaCreacion } = req.body;
+      if (typeof saldo === 'string') saldo = Number(saldo);
       const newMaterial = await prisma.material.create({
         data: {
-          name,
-          quantity,
-          userId
+          name: nombre,
+          quantity: saldo,
+          createdAt: fechaCreacion,
+          userId: creadoPor,
         }
       });
 
@@ -64,7 +67,8 @@ const materialsApi = async (req: NextApiRequest, res: NextApiResponse<ResponseDa
     }
 
     return res.status(405).json({ message: 'Method not allowed' });
-  } catch {
+  } catch (error) {
+    console.log('******* Error *******',error)
     return res.status(500).json({ message: 'Internal server error' });
   }
 }

@@ -14,8 +14,8 @@ export const authOptions: NextAuthOptions = {
           role: true,
         },
       });
-
-      return { ...session, user: { ...session.user, role: usr?.role?.name } };
+console.log('usuario auth',usr);
+      return { ...session, user: { ...session.user, role: usr?.role?.name} };
     },
   },
   adapter: PrismaAdapter(prisma),
