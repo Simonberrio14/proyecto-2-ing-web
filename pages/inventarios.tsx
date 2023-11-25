@@ -18,10 +18,7 @@ interface InventariosProps {
 const Inventarios = () => {
   const [openNuevoMovimiento, setOpenNuevoMovimiento] = useState(false);
   const { roles } = useGetRoles();
-  const { data, isLoading, error } = useSWR<UserQuery>(
-    API_SERVICES.inventario,
-    fetcher
-  );
+  const { data, isLoading, error } = useSWR<UserQuery>(API_SERVICES, fetcher);
 
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Ha ocurrido un error</div>;
