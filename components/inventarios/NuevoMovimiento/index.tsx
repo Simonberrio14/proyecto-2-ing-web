@@ -30,7 +30,6 @@ import {
       responsable: '',
     });
 
-    
     const [movimientoResult, setMovimientoResult] = useState('');
     useEffect(() => {
       const result= <MovimientoFilters />;

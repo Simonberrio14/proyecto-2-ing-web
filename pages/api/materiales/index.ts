@@ -21,14 +21,12 @@ const materialsApi = async (req: NextApiRequest, res: NextApiResponse<ResponseDa
 
     if (req.method === 'POST') {
       console.log(req);
-      const { id, name, quantity, userId } = req.body;
-      const createdAt = new Date().toISOString();
+      const { name, quantity, userId } = req.body;
+
       const newMaterial = await prisma.material.create({
         data: {
-          id,
           name,
           quantity,
-          createdAt,          
           userId
         }
       });
