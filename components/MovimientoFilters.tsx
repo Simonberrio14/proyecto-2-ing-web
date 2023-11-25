@@ -1,36 +1,35 @@
-import { useState } from "react";
+import { useState } from 'react';
 //import { useDateFilters } from '@/atoms/DateFiltersAtom';
 
-const tipoM = ["Entrada", "Salida"];
+const tipoM = [ 'Entrada', 'Salida'];
+
 
 const MovimientoFilters = () => {
   const [movimientoFilters, setMovimientoFilters] = useState({
-    tipo: "",
+    tipo: '',
   });
 
-  return (
-    <div className="flex gap-3">
-      <label htmlFor="tipo">
+
+
+return (
+    <div className='flex gap-3'>
+      <label htmlFor='tipo'>
         <span></span>
         <select
-          name="tipo"
+          name='tipo'
           value={movimientoFilters.tipo}
           onChange={(e) =>
             setMovimientoFilters({
               ...movimientoFilters,
-              tipo: parseInt(e.target.value).toString(),
+              tipo: parseInt(e.target.value),
             })
           }
         >
-          <option disabled value="">
+          <option disabled value=''>
             Seleccione el movimiento
           </option>
           {tipoM.map((tipo) => {
-            return (
-              <option key={tipo} value={tipo}>
-                {tipo}
-              </option>
-            );
+            return <option key={tipo} value={tipo}>{tipo}</option>;
           })}
         </select>
       </label>

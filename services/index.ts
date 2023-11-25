@@ -7,7 +7,7 @@ const API_SERVICES = {
   users: `${API_URL}/users`,
   roles: `${API_URL}/roles`,
   material: `${API_URL}/materiales`,
-  // inventario: `${API_URL}/inventarios`,
+  //inventario: `${API_URL3}/inventarios`,
 };
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
